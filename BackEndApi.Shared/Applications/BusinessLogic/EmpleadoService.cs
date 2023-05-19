@@ -38,6 +38,22 @@ namespace BackEndApi.Shared.Applications.BusinessLogic
                .ToListAsync();
         }
 
+        public async Task<Empleado> GetByAddAsync(Empleado model)
+        {
+            try
+            {
+                _dataContext.Empleados.Update(model);
+                var r = await SaveAllAsync();
+
+                return model;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<Empleado> GetByIdAsync(int id)
         {
             return await _dataContext
