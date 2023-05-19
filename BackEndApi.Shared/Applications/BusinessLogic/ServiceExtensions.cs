@@ -1,4 +1,5 @@
-﻿using BackEndApi.Shared.DataContext;
+﻿using BackEndApi.Shared.Applications.Contract;
+using BackEndApi.Shared.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +16,8 @@ namespace BackEndApi.Shared.Applications.BusinessLogic
                 options.UseSqlServer(Configuration.GetConnectionString("DockerConnection"));
             });
 
-            //Services.AddScoped<IBodegaRepository, BodegaRepository>();
-            //Services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();
+            Services.AddScoped<IEmpleadoService, EmpleadoService>();
+            Services.AddScoped<IDepartamentoService, DepartamentoService>();
             //Services.AddScoped<IIvaRepository, IvaRepository>();
             //Services.AddScoped<IMedidumRepository, MedidumRepository>();
             //Services.AddScoped<IProductoRepository, ProductoRepository>();

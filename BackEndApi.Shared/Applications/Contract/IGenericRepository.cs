@@ -1,4 +1,4 @@
-﻿namespace BackEndApi.Shared.Applications.Interfaces
+﻿namespace BackEndApi.Shared.Applications.Contract
 {
     public interface IGenericRepository<T> where T : class
     {

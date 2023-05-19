@@ -6,6 +6,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddApplication(builder.Configuration);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyAllowSpecificOrigins",
+      builder =>
+      {
+          builder.AllowAnyOrigin();
+          builder.AllowAnyHeader();
+          builder.AllowAnyMethod();
+          builder.SetIsOriginAllowed(origin => true);
+      });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -36,6 +48,8 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+app.UseCors("MyAllowSpecificOrigins");
 
 app.Run();
 
